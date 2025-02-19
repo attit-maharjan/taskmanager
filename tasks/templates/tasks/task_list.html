@@ -7,9 +7,14 @@
 </head>
 <body>
     <h1>Task Manager</h1>
+    <a href="{% url 'task-create' %}">+ Add Task</a>
     <ul>
         {% for task in tasks %}
-            <li>{{ task.title }} - {{ task.priority }} - {% if task.completed %}✅{% else %}❌{% endif %}</li>
+            <li>
+                {{ task.title }} - {{ task.priority }} - {% if task.completed %}✅{% else %}❌{% endif %}
+                <a href="{% url 'task-update' task.id %}">Edit</a>
+                <a href="{% url 'task-delete' task.id %}">Delete</a>
+            </li>
         {% empty %}
             <li>No tasks yet.</li>
         {% endfor %}
